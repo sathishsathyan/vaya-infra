@@ -1,8 +1,3 @@
-
-
-locals{
-  dns_records_size = length(var.certificate_dns_records)
-}
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.domain
   validation_method = "DNS"

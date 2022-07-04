@@ -12,10 +12,11 @@ variable "domain" {
   default ="*.vaya.finance"
 }
 
-variable "api_gateway_domain_name" {}
-
-variable "api_gateway_domain_name_path" {}
-
 variable "acm_certificate_id" {
   default = ""
 }
+
+variable "subnet_ids" { default = "" }
+variable "eks_cluster_create_depends_on" { default = ""}
+
+variable "eks_cluster_role_arn" { default = ""}

@@ -1,5 +1,4 @@
 provider "aws" {
-  version = "~>2.7"
   region  = var.region
 }
 
@@ -15,10 +14,9 @@ module "acm_cert"{
 
 module "eks_cluster"{
   source = "./modules/eks"
-  domain = var.domain
   subnet_ids = var.subnet_ids
   eks_cluster_role_arn = module.acm_cert.id
-  eks_cluster_create_depends_on = module.iam.policy
+  eks_cluster_create_depends_on = module.iam.id
   env = var.env
   
 }
@@ -41,4 +39,8 @@ output "eks_endpoint" {
 
 output "kubeconfig-certificate-authority-data" {
   value = module.eks_cluster.kubeconfig-certificate-authority-data
+}
+
+output "iam_role_id" {
+  value = module.iam.id
 }
